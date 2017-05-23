@@ -40,7 +40,7 @@ Axletree.prototype.bootstrap = function(options, cb) {
         extended: false
     }));
     this.app.use(cookieParser());
-    this.app.use(express.static(path.join(__dirname, '../app')));
+    this.app.use(express.static(path.join(__dirname, '../static')));
 
     //设置路由
     router(this.app);
