@@ -13,6 +13,9 @@
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.0",
     "async": "~1.4.2",
-    "requestify": "~0.2.5"
+    "requestify": "~0.2.5",
+    "lodash": "3.10.1",
+    "colors": "1.0.3",
+    "debuglog": "1.0.1"
   }
 }
