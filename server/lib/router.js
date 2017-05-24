@@ -7,11 +7,14 @@ module.exports = function(app) {
 		var appConf = apiConfig[appName],
 		    pages = apiConfig['pages'],
 			
+console.log('======pages=======')
+console.log(appConf)
+console.log(pages)
 
 		pages.forEach(function(pageItem) {
 			console.log('---pageItem---')
 			console.log(pageItem)
-			
+
 			var urls = pageItem['urls'],
 				page = pageItem['page'];
 
@@ -24,6 +27,6 @@ module.exports = function(app) {
 					res.render(path.join(__dirname, '../views/' + page), data);
 				});
 			});	
-		})
+		});
 	}
 }
