@@ -1,5 +1,10 @@
 module.exports = {
 	"{{-project_name-}}": {
-		"urls": []
+		"pages": [
+			{
+				"page": "index",
+				"urls": []
+			}
+		]
 	}
 }
