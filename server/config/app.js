@@ -1,3 +1,4 @@
 module.exports = {
-	DOMAIN: 'http://hd.huya.com'
+	DOMAIN: 'http://hd.huya.com',
+	APPNAME: '{{-project_name-}}'
 }
