@@ -45,7 +45,7 @@ Axletree.prototype.bootstrap = function(options, cb) {
     this.app.use(express.static(path.join(__dirname, '../static')));
 
     //设置路由
-    this.app.use(appRouter);
+    this.app.use(appRouter(this.DEBUG));
     //错误处理
     this.errorHandler(this.app);
     
