@@ -7,42 +7,27 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var swig = require('swig');
-var router = require('./router');
-var _ = require('lodash');
-var async = require('async');
-var loader = require('./loader.js');
+var appRouter = require('./router');
 
 var Axletree = function() {
     this.express = express;
     this.require = null;
     this.app = null;
-    this._ = _;
 };
 
 Axletree.prototype.bootstrap = function(options, cb) {
-    var rootPath, pluginsPath, confPath, started;
-
-    function loadPlugins(cb) {
-        //加载默认插件
-        var pluginFactory = loader.loadPlugins(__dirname + '/plugins');
-        //加载用户自定义插件
-        _.extend(pluginFactory, loader.loadPlugins(pluginsPath));
-        //注入插件加载代码
-        pluginFactory = _.mapValues(pluginFactory, loader.injectPluginFactory);
-        //执行插件初始化
-        async.auto(pluginFactory, cb);
-    }
+    var rootPath, confPath;
 
     options = options || {};
     //设置yog根目录，默认使用启动文件的目录
     rootPath = options.rootPath || path.dirname(require.main.filename);
-    //设置plugins目录
-    pluginsPath = options.pluginsPath || (rootPath + '/plugins');
     //设置app，未设置则直接使用express
     this.app = options.app || express();
 
     //设置全局require
     this.require = require('./require.js')(rootPath);
+
+    this.DEBUG = (process.env.AXLE_DEBUG === 'true') || false;
 
     // view engine setup
     this.app.set('views', path.join(__dirname, '../views'));
@@ -60,28 +45,10 @@ Axletree.prototype.bootstrap = function(options, cb) {
     this.app.use(express.static(path.join(__dirname, '../static')));
 
     //设置路由
-    router(this.app);
+    this.app.use(appRouter);
     //错误处理
     this.errorHandler(this.app);
-
-    //设置启动期的拦截
-    this.app.use(function (req, res, next) {
-        if (started) {
-            next();
-            return;
-        }
-        res.status(503).send('Server is starting...');
-    });
-
-    this.DEBUG = (process.env.AXLE_DEBUG === 'true') || false;
-
-    //加载插件
-    loadPlugins(function (err) {
-        if (err) throw err;
-        started = true;
-        cb && cb();
-    });
-
+    
     return this.app;
 };
 
