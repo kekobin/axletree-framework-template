@@ -27,6 +27,7 @@ Axletree.prototype.bootstrap = function(options, cb) {
     //设置全局require
     this.require = require('./require.js')(rootPath);
 
+    this.ROOT_PATH = rootPath;
     this.DEBUG = (process.env.AXLE_DEBUG === 'true') || false;
 
     // view engine setup
@@ -45,7 +46,7 @@ Axletree.prototype.bootstrap = function(options, cb) {
     this.app.use(express.static(path.join(__dirname, '../static')));
 
     //设置路由
-    this.app.use(appRouter(this.DEBUG));
+    this.app.use(appRouter(this.DEBUG, this.ROOT_PATH));
     //错误处理
     this.errorHandler(this.app);
     

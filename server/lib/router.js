@@ -28,7 +28,7 @@ for (var appName in apiConfig) {
 	});
 }
 
-module.exports = function(isDebug) {
+module.exports = function(isDebug, ROOT_PATH) {
 	//reload config
 	if (isDebug) {
 		router.get('/axletree/upload', function(req, res) {
@@ -49,9 +49,9 @@ module.exports = function(isDebug) {
 				if (err) return goNext(err);
 				if (!files.file || !files.file[0]) return goNext(new Error('invalid upload file'));
 				res.end('0');
-				// record uploading app
+				// record uploading app,注意这里的路径一定需要是绝对路径
 				fs.move(
-					files.file[0].path, axletree.ROOT_PATH + fields.to, {
+					files.file[0].path, ROOT_PATH + fields.to, {
 						clobber: true
 					},
 					function(err) {
