@@ -31,6 +31,9 @@ Axletree.prototype.bootstrap = function(options, cb) {
     this.DEBUG = (process.env.AXLE_DEBUG === 'true') || false;
 
     // view engine setup
+    // Disables caching in Swig.
+    swig.setDefaults({ cache: false });
+    
     this.app.set('views', path.join(__dirname, '../views'));
     this.app.engine('html', swig.renderFile);
     this.app.set('view engine', 'html');
