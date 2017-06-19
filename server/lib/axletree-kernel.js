@@ -6,7 +6,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var swig = require('swig');
+// var swig = require('swig');
+var ejs = require('ejs');
 var appRouter = require('./router');
 
 var Axletree = function() {
@@ -32,10 +33,15 @@ Axletree.prototype.bootstrap = function(options, cb) {
 
     // view engine setup
     // Disables caching in Swig.
-    swig.setDefaults({ cache: false });
+    // swig.setDefaults({ cache: false });
     
-    this.app.set('views', path.join(__dirname, '../views'));
-    this.app.engine('html', swig.renderFile);
+    // this.app.set('views', path.join(__dirname, '../views'));
+    // this.app.engine('html', swig.renderFile);
+    // this.app.set('view engine', 'html');
+
+    // view engine setup
+    this.app.set('views', path.join(__dirname, 'views'));
+    this.app.engine('html', ejs.renderFile);
     this.app.set('view engine', 'html');
 
     // uncomment after placing your favicon in /public
