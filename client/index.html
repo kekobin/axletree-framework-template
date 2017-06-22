@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="sass/index.scss">
+	<script type="text/javascript" src="js/lib/mod.js"></script>
+</head>
+<body>
+<%- include template/header/header.tpl %>
+
+<img src="/img/avatar.png" alt="">
+
+<ul class="list1 clearfix">
+  <%users1.forEach(function(user){ %>
+    <%- include('template/list/list.tpl', {list: user}); %>
+  <% }); %>
+</ul>
+
+<ul class="list2 clearfix">
+  <% users2.forEach(function(user){ %>
+    <%- include('template/list/list.tpl', {list: user}); %>
+  <% }); %>
+</ul>
+
+<%- include template/footer/footer.tpl %>
+
+<script type="text/javascript" src="js/index.js" data-loader></script> <!-- // data-loader 属性是 fis3-postpackager-loader 插件的配置 -->
+<!--SCRIPT_PLACEHOLDER--> <!-- // fis3-postpackager-loader 插件的配置 -->
+<script type="text/javascript">
+  require('js/mod/app');
+</script>
+</body>
+</html>
+
+
+
+

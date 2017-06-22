@@ -40,7 +40,6 @@ Axletree.prototype.bootstrap = function(options, cb) {
     // this.app.set('view engine', 'html');
 
     // view engine setup
-    this.app.set('views', path.join(__dirname, 'views'));
     this.app.engine('html', ejs.renderFile);
     this.app.set('view engine', 'html');
 

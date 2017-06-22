@@ -1,0 +1,17 @@
+.list-item{
+	border-bottom:1px solid #f2f2f2;
+
+	button{
+		float:right;
+		margin-top:-70px;
+		margin-right:20px;
+		width:100px;
+		height:40px;
+		line-height: 40px;
+		text-align: center;
+		color:#fff;
+		border:1px solid #f2f2f2;
+		outline:none;
+		cursor: pointer;
+	}
+}

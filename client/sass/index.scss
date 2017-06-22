@@ -1,0 +1,30 @@
+body,html,div,header,footer,ul,li{
+	margin:0;padding:0;
+}
+
+ul,li{
+	list-style:none;
+}
+
+%clearfix{
+	*zoom: 1;
+	&:before,
+	&:after{
+		content: "";
+		display: table;
+		line-height: 0;
+	}
+	&:after{
+		clear: both;
+	}
+}
+
+// 清除浮动
+.clearfix {
+	@extend %clearfix;
+}
+
+.list1{
+	border-bottom: 2px solid red;
+	margin-bottom:20px;
+}
