@@ -1,6 +1,6 @@
-require('../widget/list/list');//引入list
+// require('../widget/list/list');//引入list
 
 
-var Util = require('util');
+// var Util = require('util');
 
-console.log(Util.VERSION)
+// console.log(Util.VERSION)
