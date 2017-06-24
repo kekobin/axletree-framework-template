@@ -1,5 +1,10 @@
 'use strict';
 
+/**
+** @author: kekobin@163.com
+** @file Axletree核心初始化及错误处理
+**/
+
 var path = require('path');
 var express = require('express');
 var favicon = require('serve-favicon');
