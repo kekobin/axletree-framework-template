@@ -1,9 +1,8 @@
 'use strict';
 /**
-** @author: kekobin@163.com
-** @file 异步请求接口数据，并且拼装成一个json形式返回
-** 默认附带上登陆态
-**/
+ * @author: kekobin@163.com
+ * @file 异步请求接口数据，并且拼装成一个json形式返回，默认附带上登陆态
+ */
 
 var async = require('async');
 var requestify = require('requestify');

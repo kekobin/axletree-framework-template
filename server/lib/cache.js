@@ -1,9 +1,9 @@
 'use strict';
 
 /**
-** @author: kekobin@163.com
-** @file 缓存node层通过接口访问的数据，减少node端的压力，默认缓存有效期60s
-**/
+ * @author: kekobin@163.com
+ * @file 缓存node层通过接口访问的数据，减少node端的压力，默认缓存有效期60s
+ */
 var Cache = (function() {
 	var _cache = {};
 

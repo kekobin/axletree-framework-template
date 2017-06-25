@@ -1,24 +1,24 @@
 'use strict';
 /**
-** @author: kekobin@163.com
-** @file 根据配置动态初始化路由
-**{
-**	"demo": {
-**		"pages": [
-**			{
-**				"page": "index", //页面名称，对应访问的路由和html
-**				"urls": [
-**					{
-**						"name": "", //api名称，在模版中对请求结果的引用
-**						"url":""
-**					}
-**				],
-**				"cache": true//是否缓存
-**			}
-**		]
-**	}
-**}
-**/
+ * @author: kekobin@163.com
+ * @file 根据配置动态初始化路由
+ *{
+ *	"demo": {
+ *		"pages": [
+ *			{
+ *				"page": "index", //页面名称，对应访问的路由和html
+ *				"urls": [
+ *					{
+ *						"name": "", //api名称，在模版中对请求结果的引用
+ *						"url":""
+ *					}
+ *				],
+ *				"cache": true//是否缓存
+ *			}
+ *		]
+ *	}
+ *}
+ */
 
 var path = require('path');
 var express = require('express');
