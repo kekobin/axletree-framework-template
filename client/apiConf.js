@@ -8,9 +8,10 @@
  *		 "name": "", //api名称，在模版中对请求结果的引用
  *		 "url":""
  *	 }
- * @param cache -> 是否需要缓存接口数据
+ * @param cache -> 是否需要缓存接口数据 
  * 	 cache:true -> 页面路由为/demo/index
  * 	 cache:false -> 页面路由为/live/demo/index
+ * 	 (注:开发模式下，cache无论是多少统一访问/demo/index)
  */
 
 module.exports = {

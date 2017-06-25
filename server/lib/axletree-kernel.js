@@ -14,6 +14,7 @@ var bodyParser = require('body-parser');
 // var swig = require('swig');
 var ejs = require('ejs');
 var appRouter = require('./router');
+var Util = require('./util');
 
 var Axletree = function() {
     this.express = express;
@@ -60,6 +61,8 @@ Axletree.prototype.bootstrap = function(options, cb) {
 
     //设置路由
     this.app.use(appRouter(this.DEBUG, this.ROOT_PATH));
+    //设置全局功能函数
+    this.app.locals.Util = Util;
     //错误处理
     this.errorHandler(this.app);
     
