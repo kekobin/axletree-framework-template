@@ -9,9 +9,9 @@
  *		 "url":""
  *	 }
  * @param cache -> 是否需要缓存接口数据 
- * 	 cache:true -> 页面路由为/demo/index
- * 	 cache:false -> 页面路由为/live/demo/index
- * 	 (注:开发模式下，cache无论是多少统一访问/demo/index)
+ * 	 cache:true -> 页面路由为/{{-project_name-}}/index
+ * 	 cache:false -> 页面路由为/live/{{-project_name-}}/index
+ * 	 (注:开发模式下，cache无论是多少统一访问/{{-project_name-}}/index)
  */
 
 module.exports = {
