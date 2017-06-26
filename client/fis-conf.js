@@ -4,9 +4,9 @@
 var projectName = '{{-project_name-}}';
 
 /**
- *发布的域
+ *发布的cdn域
  */
-var domain = 'http://hd.huya.com/';
+var domain = '';
 
 /**
  * chrome下可以安装插件实现livereload功能
