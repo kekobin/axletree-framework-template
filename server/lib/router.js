@@ -41,16 +41,16 @@ function initRouter(debug) {
 			var urls = pageItem['urls'],
 				page = pageItem['page'],
 				cacheData = pageItem['cache'],
-				urlPrefix = cacheData ? '/' : '/live/',
+				urlPrefix = debug || cacheData ? '/' : '/live/',//debug模式下都不缓存
 				routeUrl = urlPrefix + appName + '/' + page;
 
 			router.get(routeUrl, function(req, res, next) {
 				var proCache = Cache.get(appName),
 					proData = proCache.data,
-					pagePath = path.join(__dirname, '../views/' + appName + 'View/' + page);
+					pagePath = path.join(__dirname, '../views/' + page);
 
-				//判断当前项目数据是否在有效缓存中
-				if (cacheData && proData && (Date.now() - proCache.expires) < expiresGap) {
+				//判断当前项目数据是否在有效缓存中,debug模式下都不缓存
+				if (!debug && cacheData && proData && (Date.now() - proCache.expires) < expiresGap) {
 					proData.yyuid = req.cookies.yyuid;
 					// res.render(path.join(__dirname, '../views/' + page), proData);
 					res.render(pagePath, proData);
@@ -71,7 +71,7 @@ function initRouter(debug) {
 	    done(); 
 	}, function(err) {
 	    console.log('iterating done');
-	});  
+	});
 }
 
 module.exports = function(debug, ROOT_PATH) {
