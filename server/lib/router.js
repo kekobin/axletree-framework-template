@@ -19,7 +19,7 @@
  **	}
  **}
  **/
-
+var async = require('async');
 var path = require('path');
 var express = require('express');
 var router = express.Router();
@@ -33,23 +33,27 @@ var uploadError = false;
 var expiresGap = 60000; //数据缓存有效期
 
 function initRouter(debug) {
-	for (var appName in apiConf) {
-		var appConf = apiConf[appName],
+	async.forEach(Object.keys(apiConf), function (appName, done){ 
+	    var appConf = apiConf[appName],
 			pages = appConf.pages;
-
+			
 		pages.forEach(function(pageItem) {
 			var urls = pageItem['urls'],
 				page = pageItem['page'],
 				cacheData = pageItem['cache'],
-				urlPrefix = debug || cacheData ? '/' : '/live/';//debug模式下都不缓存
+				urlPrefix = cacheData ? '/' : '/live/',
+				routeUrl = urlPrefix + appName + '/' + page;
 
-			router.get(urlPrefix + appName + '/' + page, function(req, res, next) {
+			router.get(routeUrl, function(req, res, next) {
 				var proCache = Cache.get(appName),
-					proData = proCache.data;
-				//判断当前项目数据是否在有效缓存中,debug模式下都不缓存
-				if (!debug && cacheData && proData && (Date.now() - proCache.expires) < expiresGap) {
+					proData = proCache.data,
+					pagePath = path.join(__dirname, '../views/' + appName + 'View/' + page);
+
+				//判断当前项目数据是否在有效缓存中
+				if (cacheData && proData && (Date.now() - proCache.expires) < expiresGap) {
 					proData.yyuid = req.cookies.yyuid;
-					res.render(path.join(__dirname, '../views/' + page), proData);
+					// res.render(path.join(__dirname, '../views/' + page), proData);
+					res.render(pagePath, proData);
 				} else {
 					request(req, urls, function(data) {
 						//添加缓存信息到缓存系统
@@ -57,13 +61,17 @@ function initRouter(debug) {
 
 						//根据这个在页面中判断是否登录
 						data.yyuid = req.cookies.yyuid;
-						// res.render(path.join(__dirname, '../views/' + appName + 'View/index'), data);
-						res.render(path.join(__dirname, '../views/' + page), data);
+						res.render(pagePath, data);
+						// res.render(path.join(__dirname, '../views/' + page), data);
 					});
 				}
 			});
 		});
-	}
+
+	    done(); 
+	}, function(err) {
+	    console.log('iterating done');
+	});  
 }
 
 module.exports = function(debug, ROOT_PATH) {
