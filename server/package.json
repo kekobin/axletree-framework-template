@@ -8,6 +8,6 @@
   },
   "dependencies": {
     "node-inspector": "1.1.1",
-    "axletree-kernel": "0.0.2"
+    "axletree-kernel": "0.0.3"
   }
 }
