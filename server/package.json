@@ -2,8 +2,8 @@
   "name": "axletree-framework-server",
   "version": "0.1.0",
   "scripts": {
-    "debug-win": "set AXLE_DEBUG=true&node app.js",
-    "debug": "env AXLE_DEBUG=true node app.js",
+    "debug-win": "set AXLE_DEBUG=true&node --debug app.js",
+    "debug": "env AXLE_DEBUG=true node --debug app.js",
     "watcher": "node-inspector -p 8086 $"
   },
   "dependencies": {
