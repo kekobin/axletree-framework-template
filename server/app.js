@@ -9,8 +9,6 @@ var axletree = require('axletree-kernel');
 
 var app = axletree.bootstrap({
     rootPath: __dirname
-}, function () {
-    console.log('plugins load completed');
 });
 
 app.set('port', process.env.PORT || 8085);
