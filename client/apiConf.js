@@ -20,7 +20,8 @@ module.exports = {
 			{
 				"page": "index",
 				"urls": [],
-				"cache": true
+				"cache": true,
+				"persist": false
 			}
 		]
 	}
