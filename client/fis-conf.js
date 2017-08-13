@@ -28,6 +28,11 @@ fis.media('prod')
         to: '../pub/'+projectName+'/'
     })
 })
+.match('widget/**.tpl', {
+    parser: fis.plugin('tpl-imgpath', {
+    	path: domain + projectName
+    })
+})
 .match('{widget/**.tpl,**.html,apiConf.js}', {
     deploy: fis.plugin('local-deliver', {
         to: '../pub/'+projectName+'View/'
