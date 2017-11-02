@@ -37,4 +37,7 @@ fis.media('prod')
     deploy: fis.plugin('local-deliver', {
         to: '../pub/'+projectName+'View/'
     })
-});
+})
+.match('{*.js, *.css}', {
+    query: '?kwcache=1'
+})
