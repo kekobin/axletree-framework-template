@@ -38,6 +38,6 @@ fis.media('prod')
         to: '../pub/'+projectName+'View/'
     })
 })
-.match('{*.js, *.css}', {
+.match('{*.js, *.css, *.scss, *.sass}', {
     query: '?kwcache=1'
 })
